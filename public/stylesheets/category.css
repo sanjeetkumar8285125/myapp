@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+body {
+  font-family: "Ubuntu", sans-serif;
+  background-color: #fff2e9;
+}
+.form-rounded {
+  border-radius: 1rem;
+}
+#upload {
+  opacity: 0;
+}
+
+#upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.image-area {
+  border: 2px dashed rgb(0, 0, 0);
+  padding: 1rem;
+  position: relative;
+}
+
+.image-area::before {
+  content: "Uploaded Image";
+  color: #000000;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  z-index: 1;
+}
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}
+.head::placeholder {
+  font-weight: 300;
+}
+.upload-btn {
+  background-color: #aa744e;
+}
+.upload-btn:hover {
+  color: #000000;
+}
+.submit-btn {
+  background-color: #aa744e;
+  color: #fff;
+}
+.submit-btn:hover {
+  color: #fff;
+  font-weight: 500;
+}

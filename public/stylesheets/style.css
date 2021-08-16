@@ -1,0 +1,27 @@
+.login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url("/images/image-left.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+.btn {
+  background-color: #aa744e;
+  color: white;
+}
+.btn:hover {
+  background-color: #694020;
+  color: white;
+}

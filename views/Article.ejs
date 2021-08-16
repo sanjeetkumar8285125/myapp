@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/article.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Article Upload Form</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="/images/MicrosoftTeams-image (5).png" width="100" height="auto" alt=""></a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/article">Article Post <span class="sr-only">(current)</span></a></li>
+            <li><a href="/category">Upload Category</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right float-right">
+            <li class="dropdown">
+              <a href="/logout"><button class="btn btn-outline-success my-2 my-sm-0 login-button" type="submit">Logout</button></a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h1 class="panel-title">Post Your New Article Here</h1>
+              </div>
+              <!-- <div id="collapseOne" class="panel-collapse collapse in"> -->
+                <div class="panel-body">
+                  <div class="row">
+                    <form action="/article" method="POST" enctype="multipart/form-data">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input
+                        id="article-heading"
+                          type="text"
+                          name="articleHeading"
+                          class="form-control"
+                          placeholder="Article Heading"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <textarea
+                        id="article-desc"
+                          class="form-control"
+                          name="desc"
+                          placeholder="Article Description"
+                          rows="5"
+                          required
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 category-col">
+                      <label for="category" class="category"> Category</label>
+                      <div class="form-check">
+                        <% if(category){ %>
+                        <%  category.forEach(function(data){ %>
+                          <div class="form-items">
+                            <input class="form-check-input" name="category" type="checkbox" value=" <%= data._id %>" id="flexCheckIndeterminate">
+                            <label class="form-check-label" for="flexCheckIndeterminate">
+                              <%= data.name %>
+                            </label></div>
+                        <%  }) %>
+                   <%  }else{ %>
+                    <h6>NO category found</h6>
+                      <%  } %>
+                        <!-- <div class="form-items">
+                        <input class="form-check-input" name="category" type="checkbox" value="Sports" id="flexCheckIndeterminate">
+                        <label class="form-check-label" for="flexCheckIndeterminate">
+                          Sports
+                        </label></div>
+                        <div class="form-items">
+                        <input class="form-check-input" name="category" type="checkbox" value="Bollywood" id="flexCheckIndeterminate">
+                        <label class="form-check-label" for="flexCheckIndeterminate">
+                          Bollywood
+                        </label></div>
+                        <div class="form-items">
+                        <input class="form-check-input" name="category" type="checkbox" value="Hollywood" id="flexCheckIndeterminate">
+                        <label class="form-check-label" for="flexCheckIndeterminate">
+                          Hollywood
+                        </label>
+                      </div> -->
+                      </div>
+                      <!-- <div class="form-group">
+                        <label for="category"> Category</label>
+                        <select class="form-control" id="category">
+                          <option>Sports</option>
+                          <option>Bollywood</option>
+                          <option>Hollywood</option>
+                          <option>Politics</option>
+                        </select>
+                      </div> -->
+                    </div>
+                    <div class="col-md-6">
+                      <div class="well well-sm">
+                        <div class="input-group">
+                          <span class="input-group-addon"
+                            >www.newsappsite.com/</span
+                          >
+                          <input
+                            type="text"
+                            class="form-control"
+                            name="url"
+                            placeholder="reference url"
+                          />
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-6">
+                       
+
+                            <input id="file-upload" type="file" name="image" accept="image/*" />
+                          
+                            <label for="file-upload" id="file-drag">
+                              <img id="file-image" src="#" alt="Preview" class="hidden">
+                              <div id="start">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                <div>Select an image or drag here</div>
+                                <div id="notimage" class="hidden">Please select an image</div>
+                                <span id="file-upload-btn" class="btn btn-primary">Select a image</span>
+                              </div>
+                              <div id="response" class="hidden">
+                                <div id="messages"></div>
+                                <progress class="progress" id="file-progress" value="0">
+                                  <span>0</span>%
+                                </progress>
+                              </div>
+                            </label>
+                          
+                    </div>
+                </div>
+                <div class="text-center button">
+                    <button type="submit" onclick="validate()" class="btn submit-btn btn-lg">Submit Article</button>
+                </div>
+              </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/javascripts/imageupload.js"></script>
+    <script>
+        function validate() {
+  var aheading = document.getElementById("article-heading");
+  var adesc = document.getElementById("article-desc");
+
+  if (aheading.value == "") {
+    alert("Article Heading should not be empty!");
+  } else if (adesc.value == "") {
+    alert("Article Description should not be empty!");
+  }
+  else if (aheading.length < 15) {
+    alert("Article Heading should not be in less than 15 Characters!");
+  } else if (adesc.length < 60) {
+    alert("Article Description should not be in less than 60 Characters!");
+  }
+}
+
+    </script>
+  </body>
+</html>
